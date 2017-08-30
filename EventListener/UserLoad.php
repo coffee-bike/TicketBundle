@@ -3,41 +3,46 @@
 namespace Hackzilla\Bundle\TicketBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Hackzilla\Bundle\TicketBundle\Entity\Ticket;
-use Hackzilla\Bundle\TicketBundle\Entity\TicketMessage;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Hackzilla\Bundle\TicketBundle\Model\TicketInterface;
+use Hackzilla\Bundle\TicketBundle\Model\TicketMessageInterface;
 
 class UserLoad
 {
-    protected $container;
+    protected $userRepository;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct($userRepository)
     {
-        $this->container = $container;
+        $this->userRepository = $userRepository;
     }
 
     public function getSubscribedEvents()
     {
-        return array(
+        return [
             'postLoad',
-        );
+        ];
     }
 
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        $userManager = $this->container->get('hackzilla_ticket.user');
 
-        if ($entity instanceof Ticket) {
+        // Ignore any entity lifecycle events not relating to this bundles entities.
+        if (!$entity instanceof TicketInterface && !$entity instanceof TicketMessageInterface) {
+            return;
+        }
+
+        $userRepository = $args->getEntityManager()->getRepository($this->userRepository);
+
+        if ($entity instanceof TicketInterface) {
             if (\is_null($entity->getUserCreatedObject())) {
-                $entity->setUserCreated($userManager->getUserById($entity->getUserCreated()));
+                $entity->setUserCreated($userRepository->find($entity->getUserCreated()));
             }
             if (\is_null($entity->getLastUserObject())) {
-                $entity->setLastUser($userManager->getUserById($entity->getLastUser()));
+                $entity->setLastUser($userRepository->find($entity->getLastUser()));
             }
-        } else if ($entity instanceof TicketMessage) {
+        } elseif ($entity instanceof TicketMessageInterface) {
             if (\is_null($entity->getUserObject())) {
-                $entity->setUser($userManager->getUserById($entity->getUser()));
+                $entity->setUser($userRepository->find($entity->getUser()));
             }
         }
     }

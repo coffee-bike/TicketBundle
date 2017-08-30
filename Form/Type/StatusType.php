@@ -2,28 +2,32 @@
 
 namespace Hackzilla\Bundle\TicketBundle\Form\Type;
 
+use Hackzilla\Bundle\TicketBundle\Model\TicketMessageInterface;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use \Hackzilla\Bundle\TicketBundle\Entity\TicketMessage;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class StatusType extends AbstractType
 {
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $choices = TicketMessage::$statuses;
+        $choices = TicketMessageInterface::STATUSES;
         unset($choices[0]);
 
-        $resolver->setDefaults(array(
-            'choices' => $choices,
-        ));
+        $resolver->setDefaults(
+            [
+                'choices_as_values' => true,
+                'choices'           => array_flip($choices),
+            ]
+        );
     }
 
     public function getParent()
     {
-        return 'choice';
+        return ChoiceType::class;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'status';
     }
