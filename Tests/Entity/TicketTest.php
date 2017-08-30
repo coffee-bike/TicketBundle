@@ -2,24 +2,32 @@
 
 namespace Hackzilla\Bundle\TicketBundle\Tests\Entity;
 
+use Hackzilla\Bundle\TicketBundle\Entity\Ticket;
+use Hackzilla\Bundle\TicketBundle\Model\TicketMessageInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TicketTest extends WebTestCase
 {
-    private $_object;
+    private $object;
 
     public function setUp()
     {
-        $this->_object = new \Hackzilla\Bundle\TicketBundle\Entity\Ticket();
+        $this->object = new Ticket();
     }
 
     public function tearDown()
     {
-        unset($this->_object);
+        unset($this->object);
     }
 
     public function testObjectCreated()
     {
-        $this->assertTrue(\is_object($this->_object));
+        $this->assertInstanceOf(Ticket::class, $this->object);
+    }
+
+    public function testStatus()
+    {
+        $this->object->setStatus(TicketMessageInterface::STATUS_INVALID);
+        $this->assertSame(TicketMessageInterface::STATUS_INVALID, $this->object->getStatus());
     }
 }

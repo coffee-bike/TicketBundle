@@ -2,14 +2,14 @@
 
 namespace Hackzilla\Bundle\TicketBundle\Event;
 
+use Hackzilla\Bundle\TicketBundle\Model\TicketInterface;
 use Symfony\Component\EventDispatcher\Event;
-use Hackzilla\Bundle\TicketBundle\Entity\Ticket;
 
 class TicketEvent extends Event
 {
     protected $ticket;
 
-    public function __construct(Ticket $ticket)
+    public function __construct(TicketInterface $ticket)
     {
         $this->ticket = $ticket;
     }

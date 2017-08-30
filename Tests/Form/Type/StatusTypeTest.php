@@ -2,24 +2,25 @@
 
 namespace Hackzilla\Bundle\TicketBundle\Tests\Form\Type;
 
+use Hackzilla\Bundle\TicketBundle\Form\Type\StatusType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class StatusTypeTest extends TypeTestCase
 {
-    private $_object;
+    private $object;
 
     public function setUp()
     {
-        $this->_object = new \Hackzilla\Bundle\TicketBundle\Form\Type\StatusType();
+        $this->object = new StatusType();
     }
 
     public function tearDown()
     {
-        unset($this->_object);
+        unset($this->object);
     }
 
     public function testObjectCreated()
     {
-        $this->assertTrue(\is_object($this->_object));
+        $this->assertInstanceOf(StatusType::class, $this->object);
     }
 }
