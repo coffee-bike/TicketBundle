@@ -54,6 +54,13 @@ class Ticket
     protected $subject;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="salesforceId", type="string")
+     */
+    protected $salesforceId;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="status", type="smallint")
@@ -374,5 +381,24 @@ class Ticket
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSalesforceId()
+    {
+        return $this->salesforceId;
+    }
+
+    /**
+     * @param $salesforceId
+     * @return $this
+     */
+    public function setSalesforceId($salesforceId)
+    {
+        $this->salesforceId = $salesforceId;
+
+        return $this;
     }
 }
