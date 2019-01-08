@@ -1,7 +1,19 @@
 {
     "name": "hackzilla/ticket-bundle",
-    "description": "This Bundle provides ticketing functionality for Symfony2 applications. Multilingual capable",
-    "keywords": ["ticket", "ticketing", "help desk", "helpdesk", "support", "multilingual", "english", "french", "russian", "german", "spanish"],
+    "description": "This Bundle provides multilingual ticketing functionality for Symfony applications.",
+    "keywords": [
+        "ticket",
+        "ticketing",
+        "help desk",
+        "helpdesk",
+        "support",
+        "multilingual",
+        "english",
+        "french",
+        "russian",
+        "german",
+        "spanish"
+    ],
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
@@ -13,19 +25,22 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "~2.3",
-        "sensio/framework-extra-bundle": "~3.0",
-        "doctrine/orm": "~2.2,>=2.2.3",
-        "doctrine/doctrine-bundle": "~1.2",
+        "php": "^5.6 || ^7.0",
+        "symfony/symfony": "^2.8 || ^3.0",
+        "sensio/framework-extra-bundle": "^3.0.2",
+        "doctrine/orm": "^2.4.8",
+        "doctrine/doctrine-bundle": "~1.4",
         "knplabs/knp-paginator-bundle": "~2.3",
         "vich/uploader-bundle": "^0.14.0"
     },
-    "require-dev": {
-        "symfony/form": "~2.3"
-    },
     "suggest": {
-        "hackzilla/bootstrap-bundle": "used to define the layout (v3)"
+        "vich/uploader-bundle": "Allow attaching files to ticket messages"
+    },
+    "require-dev": {
+        "symfony/form": "^2.8 || ^3.0",
+        "symfony/phpunit-bridge": "^2.8 || ^3.0",
+        "phpunit/phpunit": "^5.4",
+        "sllh/php-cs-fixer-styleci-bridge": "^1.5"
     },
     "autoload": {
         "psr-4": {
@@ -34,7 +49,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "3.x-dev"
         }
     }
 }
