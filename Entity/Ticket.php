@@ -25,6 +25,14 @@ class Ticket
     protected $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="salesforceId", type="string", length=255)
+     **/
+    protected $salesforceId;
+
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="user_created_id", type="guid")
@@ -374,5 +382,26 @@ class Ticket
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Set salesforceId
+     *
+     * @param string $salesforceId
+     * @return Ticket
+     */
+    public function setSalesforceId($salesforceId)
+    {
+        $this->salesforceId = $salesforceId;
+        return $this;
+    }
+    /**
+     * Get salesforceId
+     *
+     * @return string Salesforce ID
+     */
+    public function getSalesforceId()
+    {
+        return $this->salesforceId;
     }
 }
