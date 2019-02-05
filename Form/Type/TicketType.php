@@ -3,51 +3,59 @@
 namespace Hackzilla\Bundle\TicketBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Hackzilla\Bundle\TicketBundle\User\UserInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TicketType extends AbstractType
 {
-    private $_userManager;
+    protected $ticketClass;
 
-    public function __construct(UserInterface $userManager)
+    public function __construct($ticketClass)
     {
-        $this->_userManager = $userManager;
+        $this->ticketClass = $ticketClass;
     }
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('subject', 'text', array(
+            ->add(
+                'subject',
+                TextType::class,
+                [
                     'label' => 'LABEL_SUBJECT',
-                ))
-                ->add('messages', 'collection', array(
-                    'type' => new TicketMessageType($this->_userManager, true),
-                    'label' => false,
-                    'allow_add' => true,
-        ));
+                ]
+            )
+            ->add(
+                'messages',
+                CollectionType::class,
+                [
+                    'entry_type'    => TicketMessageType::class,
+                    'entry_options' => [
+                        'new_ticket' => true,
+                    ],
+                    'label'         => false,
+                    'allow_add'     => true,
+                ]
+            );
     }
 
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Hackzilla\Bundle\TicketBundle\Entity\Ticket'
-        ));
+        $resolver->setDefaults(
+            [
+                'data_class' => $this->ticketClass,
+            ]
+        );
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getBlockPrefix()
     {
-        return 'hackzilla_bundle_ticketbundle_tickettype';
+        return 'ticket';
     }
 }

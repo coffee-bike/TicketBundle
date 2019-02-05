@@ -7,6 +7,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Hackzilla\Bundle\TicketBundle\Entity\Traits\TicketMessageTrait;
+use Hackzilla\Bundle\TicketBundle\Model\TicketMessageInterface;
 
 /**
  * Message
@@ -15,8 +17,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass="Hackzilla\Bundle\TicketBundle\Entity\TicketMessageRepository")
  * @Vich\Uploadable
  */
-class TicketMessage
+class TicketMessage implements TicketMessageInterface
 {
+    use TicketMessageTrait;
+
     /**
      * @var integer
      *
@@ -70,9 +74,7 @@ class TicketMessage
     protected $priority;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @var int
      */
     protected $createdAt;
 
@@ -128,9 +130,9 @@ class TicketMessage
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {

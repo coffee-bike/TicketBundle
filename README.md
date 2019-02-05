@@ -1,7 +1,4 @@
-Ticketing Bundle v1
-===================
-
-Latest version. See 0.9 for [previous version](https://github.com/hackzilla/TicketBundle/tree/0.9.x).
+# Ticketing Bundle v3
 
 Simple multilingual ticketing bundle to add to any project.
 Languages: English, French, Russian, German and Spanish.
@@ -9,130 +6,75 @@ Languages: English, French, Russian, German and Spanish.
 [![Build Status](https://travis-ci.org/hackzilla/TicketBundle.png?branch=master)](https://travis-ci.org/hackzilla/TicketBundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/091d37a9-7862-4365-952c-814ce95c4d6c/mini.png)](https://insight.sensiolabs.com/projects/091d37a9-7862-4365-952c-814ce95c4d6c)
 
-Requirements
-------------
 
-* FOSUserBundle
+## Requirements
+
+* PHP >= 5.6
+* Symfony ~2.8|~3.0
 * Knp Paginator
 * Bootstrap v3 (optional) see: http://symfony.com/blog/new-in-symfony-2-6-bootstrap-form-theme
 
-Demo
-----
+## Optional Requirements
+
+* FOSUserBundle
+
+
+## Version Matrix
+
+| Ticket Bundle                                                          | Symfony    | PHP   |
+| ---------------------------------------------------------------------- | ---------- | ----- |
+| [3.x](https://github.com/hackzilla/TicketBundle/tree/master) (master)  | ^2.8\|^3.0 | >=5.6 |
+| [2.x](https://github.com/hackzilla/TicketBundle/tree/2.x)              | ^2.7\|^3.0 | >=5.3 |
+| [1.x](https://github.com/hackzilla/TicketBundle/tree/1.x)              | ^2.3       | >=5.3 |
+| [0.x](https://github.com/hackzilla/TicketBundle/tree/0.9.x)            | ^2.3       | >=5.3 |
+
+
+## Demo
 
 See [Ticket Bundle Demo App](https://github.com/hackzilla/TicketBundleDemoApp) for an example installation.  This can also be used for confirming bugs.
 
-Installation
-------------
 
-Add HackzillaTicketBundle in your composer.json:
+## Setup
 
-```json
-{
-    "require": {
-        "hackzilla/ticket-bundle": "~1.0",
-        "friendsofsymfony/user-bundle": "~2.0@dev",
-    }
-}
+* [Installation with FOSUserBundle](Resources/doc/setup/fosuserbundle.md)
+* [Generic Installation](Resources/doc/setup/other.md)
+
+
+
+## Optional Features
+
+These optional features that can be turned on or off.
+
+### Features
+
+* [Attachments](Resources/doc/setup/feature/attachments.md)
+* [Custom Entities](Resources/doc/setup/feature/custom-entities.md)
+* [Events](Resources/doc/setup/feature/events.md)
+
+# 3rd Party Extensions
+
+# [Email Notification](https://github.com/flodaq/TicketNotificationBundle)
+
+
+## Custom Templates (Optional)
+
 ```
+config.yml
 
-Follow [FOSUserBundle guide](https://github.com/FriendsOfSymfony/FOSUserBundle)
-
-
-Install Composer
-
-```
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
-```
-
-Now tell composer to download the library by running the command:
-
-``` bash
-$ composer update hackzilla/ticket-bundle
-```
-
-Composer will install the bundle into your project's `vendor/hackzilla` directory.
-
-### Step 2: Enable the bundle
-
-Enable the bundle in the kernel:
-
-``` php
-<?php
-// app/AppKernel.php
-
-public function registerBundles()
-{
-    $bundles = array(
-        // ...
-        new FOS\UserBundle\FOSUserBundle(),
-        new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-        new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-        new Hackzilla\Bundle\TicketBundle\HackzillaTicketBundle(),
-        // ...
-        // Your application bundles
-    );
-}
-```
-
-### Step 3: Import the routing
-
-``` yml
 hackzilla_ticket:
-    resource: "@HackzillaTicketBundle/Resources/config/routing.yml"
-    prefix:   /
+    templates: 
+        index: 'YOURTicketBundle:Ticket:index.html.twig'
+        new: 'YOURTicketBundle:Ticket:new.html.twig'
+        prototype: 'YOURTicketBundle:Ticket:prototype.html.twig'
+        show: 'YOURTicketBundle:Ticket:show.html.twig'
+        show_attachment: 'YOURTicketBundle:Ticket:show_attachment.html.twig'
 ```
 
-or 
+## Migrate a Previous Version
 
-``` yml
-hackzilla_ticket:
-    resource: "@HackzillaTicketBundle/Resources/config/routing/ticket.yml"
-    prefix:   /ticket
-```
-
-### Step 4: Roles
-
-All users can create tickets, even anonymous users.
-You can assign ROLE_TICKET_ADMIN to any user you want to be able to administer the ticketing system.
-
-### Step 5: Create tables
-
-```app/console doctrine:schema:update --force```
-
-Events
-------
-
-TicketBundle show fires events for creating, updating, and deleting of tickets.
-
-* hackzilla.ticket.create
-* hackzilla.ticket.update
-* hackzilla.ticket.delete
-
-See for example of how to create listener: http://symfony.com/doc/current/cookbook/service_container/event_listener.html
+* [Information moved](Resources/doc/migrate/index.md)
 
 
-Change Log
-----------
-
-0.7
-* TicketType and TicketMessageType have been moved into Form/Type folder.
-
-0.9
-* New template, and schema changes
-
-1.0
-* Moved UserInterface into bundle
-* Moved Ticket Manager to its own namespace
-
-
-Migrating to 1.0
-----------------
-
-* remove new Hackzilla\Bundle\FOSUserBridgeBundle\HackzillaFOSUserBridgeBundle() from AppKernel.php
-* remove hackzilla/fosuser-bridge-bundle from composer.json
-
-Pull Requests
--------------
+## Pull Requests
 
 I'm open to pull requests for additional languages, features and/or improvements.
