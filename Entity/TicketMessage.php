@@ -60,6 +60,13 @@ class TicketMessage implements TicketMessageInterface
     protected $status;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="salesforceId", type="string")
+     */
+    protected $salesforceId;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="priority", type="smallint")
@@ -412,6 +419,25 @@ class TicketMessage implements TicketMessageInterface
     public function setFilename($filename)
     {
         $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSalesforceId()
+    {
+        return $this->salesforceId;
+    }
+
+    /**
+     * @param $salesforceId
+     * @return $this
+     */
+    public function setSalesforceId($salesforceId)
+    {
+        $this->salesforceId = $salesforceId;
 
         return $this;
     }
