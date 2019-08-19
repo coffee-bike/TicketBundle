@@ -31,6 +31,14 @@ class Ticket implements TicketInterface
     /**
      * @var integer
      *
+     * @ORM\Column(name="user_assigned_id", type="guid")
+     */
+    protected $userAssigned;
+    protected $userAssignedObject;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="user_created_id", type="guid")
      */
     protected $userCreated;

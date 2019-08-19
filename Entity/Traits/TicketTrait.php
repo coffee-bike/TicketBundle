@@ -15,6 +15,11 @@ trait TicketTrait
     /**
      * @var int
      */
+    protected $userAssigned;
+    protected $userAssignedObject;
+    /**
+     * @var int
+     */
     protected $userCreated;
     protected $userCreatedObject;
 
