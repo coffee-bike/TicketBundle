@@ -31,6 +31,13 @@ class Ticket
      **/
     protected $salesforceId;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_assigned_id", type="guid")
+     */
+    protected $userAssigned;
+    protected $userAssignedObject;
 
     /**
      * @var integer
