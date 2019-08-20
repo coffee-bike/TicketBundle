@@ -411,4 +411,33 @@ class Ticket
     {
         return $this->salesforceId;
     }
+
+    /**
+     * @return int
+     */
+    public function getUserAssigned()
+    {
+        return $this->userAssigned;
+    }
+
+    /**
+     * Set userAssigned
+     *
+     * @param integer|object $userAssigned
+     * @return Ticket
+     */
+    public function setUserAssigned($userAssigned)
+    {
+        if (\is_object($userAssigned)) {
+            $this->userAssignedObject = $userAssigned;
+            $this->userAssigned = $userAssigned->getId();
+        } else {
+            $this->userAssignedObject = null;
+            $this->userAssigned = $userAssigned;
+        }
+
+        return $this;
+    }
+
+
 }
