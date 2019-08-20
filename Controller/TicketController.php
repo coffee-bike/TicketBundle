@@ -27,7 +27,8 @@ class TicketController extends Controller
     {
         $userManager = $this->get('hackzilla_ticket.user');
         $translator = $this->get('translator');
-        
+        $translator = $this->get('translator');
+
         $ticketState = $request->get('state', $translator->trans('STATUS_OPEN'));
         $ticketPriority = $request->get('priority', null);
 
@@ -109,7 +110,7 @@ class TicketController extends Controller
      * @param Ticket $ticket
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction(Ticket $ticket=null)
+    public function showAction(Ticket $ticket=null, Request $request)
     {
         if(!$ticket){
             return $this->redirect($this->generateUrl('hackzilla_ticket'));

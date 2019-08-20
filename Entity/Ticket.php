@@ -34,9 +34,9 @@ class Ticket
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_assigned_id", type="guid")
+     * @ORM\Column(name="user_assigned_id", type="guid", nullable=true)
      */
-    protected $userAssigned;
+    protected $userAssigned = null;
     protected $userAssignedObject;
 
     /**
