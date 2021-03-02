@@ -1,7 +1,6 @@
 {
     "name": "hackzilla/ticket-bundle",
     "description": "This Bundle provides multilingual ticketing functionality for Symfony applications.",
-    "version": "3.x-dev",
     "keywords": [
         "ticket",
         "ticketing",
