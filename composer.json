@@ -48,10 +48,5 @@
         "psr-4": {
             "Hackzilla\\Bundle\\TicketBundle\\": ""
         }
-    },
-    "extra": {
-        "branch-alias": {
-
-        }
     }
 }
