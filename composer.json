@@ -1,6 +1,7 @@
 {
     "name": "hackzilla/ticket-bundle",
     "description": "This Bundle provides multilingual ticketing functionality for Symfony applications.",
+    "version": "3.x-dev",
     "keywords": [
         "ticket",
         "ticketing",
@@ -26,30 +27,31 @@
     ],
     "require": {
         "php": "^5.6 || ^7.0",
-        "symfony/symfony": "^2.8 || ^3.0",
+        "symfony/symfony": "^2.8 || ^3.3",
         "sensio/framework-extra-bundle": "^3.0.2",
         "doctrine/orm": "^2.4.8",
         "doctrine/doctrine-bundle": "~1.4",
         "knplabs/knp-paginator-bundle": "~2.3",
-        "vich/uploader-bundle": "^0.14.0"
+        "vich/uploader-bundle": "^1.4"
     },
     "suggest": {
         "vich/uploader-bundle": "Allow attaching files to ticket messages"
     },
     "require-dev": {
         "symfony/form": "^2.8 || ^3.0",
-        "symfony/phpunit-bridge": "^2.8 || ^3.0",
+        "symfony/phpunit-bridge": "^5.2",
         "phpunit/phpunit": "^5.4",
         "sllh/php-cs-fixer-styleci-bridge": "^1.5"
     },
     "autoload": {
+        "_comment": "psr-4 definiert den Filepath in dem das Bundle abgelegt werden soll",
         "psr-4": {
             "Hackzilla\\Bundle\\TicketBundle\\": ""
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.x-dev"
+
         }
     }
 }
