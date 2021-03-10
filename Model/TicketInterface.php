@@ -2,6 +2,8 @@
 
 namespace Hackzilla\Bundle\TicketBundle\Model;
 
+use Hackzilla\Bundle\TicketBundle\Entity\TicketMessage;
+
 interface TicketInterface
 {
     /**
@@ -170,18 +172,18 @@ interface TicketInterface
     /**
      * Add message.
      *
-     * @param TicketMessageInterface $message
+     * @param TicketMessage $message
      *
      * @return $this
      */
-    public function addMessage(TicketMessageInterface $message);
+    public function addMessage(TicketMessage $message);
 
     /**
      * Remove message.
      *
-     * @param TicketMessageInterface $message
+     * @param TicketMessage $message
      */
-    public function removeMessage(TicketMessageInterface $message);
+    public function removeMessage(TicketMessage $message);
 
     /**
      * Get messages.
