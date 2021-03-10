@@ -1,6 +1,9 @@
 <?php
 
 namespace Hackzilla\Bundle\TicketBundle\Model;
+namespace Hackzilla\Bundle\TicketBundle\Entity;
+
+use Hackzilla\Bundle\TicketBundle\Model\Ticket;
 
 interface TicketMessageInterface
 {
@@ -133,11 +136,11 @@ interface TicketMessageInterface
     /**
      * Set ticket.
      *
-     * @param TicketInterface $ticket
+     * @param Ticket $ticket
      *
      * @return $this
      */
-    public function setTicket(TicketInterface $ticket = null);
+    public function setTicket(Ticket $ticket = null);
 
     /**
      * Get ticket.
