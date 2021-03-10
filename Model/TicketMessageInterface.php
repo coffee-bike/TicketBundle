@@ -1,7 +1,6 @@
 <?php
 
 namespace Hackzilla\Bundle\TicketBundle\Model;
-namespace Hackzilla\Bundle\TicketBundle\Entity;
 
 use Hackzilla\Bundle\TicketBundle\Model\Ticket;
 
