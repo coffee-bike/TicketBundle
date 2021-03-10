@@ -3,6 +3,8 @@
 namespace Hackzilla\Bundle\TicketBundle\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Hackzilla\Bundle\TicketBundle\Entity\Ticket;
+use Hackzilla\Bundle\TicketBundle\Entity\TicketMessage;
 use Hackzilla\Bundle\TicketBundle\Model\TicketInterface;
 use Hackzilla\Bundle\TicketBundle\Model\TicketMessageInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -17,7 +19,7 @@ interface TicketManagerInterface
 
     public function createMessage(TicketInterface $ticket = null);
 
-    public function updateTicket(TicketInterface $ticket, TicketMessageInterface $message = null);
+    public function updateTicket(Ticket $ticket, TicketMessage $message = null);
 
     public function deleteTicket(TicketInterface $ticket);
 

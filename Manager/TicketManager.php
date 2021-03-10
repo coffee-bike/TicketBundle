@@ -3,6 +3,7 @@
 namespace Hackzilla\Bundle\TicketBundle\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Hackzilla\Bundle\TicketBundle\Entity\Ticket;
 use Hackzilla\Bundle\TicketBundle\Entity\TicketMessage;
 use Hackzilla\Bundle\TicketBundle\Model\TicketInterface;
 use Hackzilla\Bundle\TicketBundle\Model\TicketMessageInterface;
@@ -98,12 +99,12 @@ class TicketManager implements TicketManagerInterface
      * Update or Create a Ticket in the database
      * Update or Create a TicketMessage in the database.
      *
-     * @param TicketInterface        $ticket
-     * @param TicketMessageInterface $message
+     * @param Ticket        $ticket
+     * @param TicketMessage $message
      *
      * @return TicketInterface
      */
-    public function updateTicket(TicketInterface $ticket, TicketMessageInterface $message = null)
+    public function updateTicket(Ticket $ticket, TicketMessage $message = null)
     {
         if (is_null($ticket->getId())) {
             $this->objectManager->persist($ticket);
