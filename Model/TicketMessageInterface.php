@@ -2,7 +2,7 @@
 
 namespace Hackzilla\Bundle\TicketBundle\Model;
 
-use Hackzilla\Bundle\TicketBundle\Model\Ticket;
+use Hackzilla\Bundle\TicketBundle\Entity\Ticket;
 
 interface TicketMessageInterface
 {
