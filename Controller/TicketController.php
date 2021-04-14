@@ -116,7 +116,7 @@ class TicketController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction($ticketId)
+    public function showAction(Request $request, $ticketId)
     {
         $ticketManager = $this->get('hackzilla_ticket.ticket_manager');
         $ticket = $ticketManager->getTicketById($ticketId);
